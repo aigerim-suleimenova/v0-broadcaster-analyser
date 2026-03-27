@@ -3,12 +3,17 @@
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Search, Bell, Settings, Radio } from "lucide-react"
+import { Search, Bell, Settings, Radio, Bot, PanelRightClose, PanelRight } from "lucide-react"
 
-export function Header() {
+interface HeaderProps {
+  showAIPanel: boolean
+  onToggleAIPanel: () => void
+}
+
+export function Header({ showAIPanel, onToggleAIPanel }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center justify-between px-6">
+      <div className="flex h-14 items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
@@ -45,6 +50,23 @@ export function Header() {
           </Button>
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
             <Settings className="h-5 w-5" />
+          </Button>
+          
+          <div className="ml-2 h-6 w-px bg-border" />
+          
+          <Button 
+            variant={showAIPanel ? "default" : "outline"} 
+            size="sm"
+            onClick={onToggleAIPanel}
+            className="gap-2"
+          >
+            <Bot className="h-4 w-4" />
+            <span>AI Analyst</span>
+            {showAIPanel ? (
+              <PanelRightClose className="h-4 w-4" />
+            ) : (
+              <PanelRight className="h-4 w-4" />
+            )}
           </Button>
         </div>
       </div>
