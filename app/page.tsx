@@ -9,6 +9,7 @@ import { ChatAnalysis } from "@/components/dashboard/chat-analysis"
 import { ScheduleView } from "@/components/dashboard/schedule-view"
 import { ChannelList } from "@/components/dashboard/channel-list"
 import { WeeklyTrends } from "@/components/dashboard/weekly-trends"
+import { AIAgentPanel } from "@/components/dashboard/ai-agent-panel"
 
 export default function BroadcastAnalyzer() {
   return (
@@ -16,36 +17,42 @@ export default function BroadcastAnalyzer() {
       <Header />
       <SidebarNav />
       
-      <main className="ml-56 p-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-foreground">Dashboard Overview</h1>
-          <p className="text-muted-foreground">
-            Monitor your broadcast performance across all channels
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          <StatsCards />
-          
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-            <div className="xl:col-span-2">
-              <ViewerChart />
-            </div>
-            <div>
-              <ChannelList />
-            </div>
+      <div className="ml-56 flex">
+        <main className="flex-1 p-6 pr-3">
+          <div className="mb-6">
+            <h1 className="text-2xl font-semibold text-foreground">Dashboard Overview</h1>
+            <p className="text-muted-foreground">
+              Monitor your broadcast performance across all channels
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            <WeeklyTrends />
-            <ChatAnalysis />
-          </div>
+          <div className="space-y-6">
+            <StatsCards />
+            
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+              <div className="xl:col-span-2">
+                <ViewerChart />
+              </div>
+              <div>
+                <ChannelList />
+              </div>
+            </div>
 
-          <ContentPerformance />
-          
-          <ScheduleView />
-        </div>
-      </main>
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+              <WeeklyTrends />
+              <ChatAnalysis />
+            </div>
+
+            <ContentPerformance />
+            
+            <ScheduleView />
+          </div>
+        </main>
+
+        <aside className="sticky top-14 h-[calc(100vh-3.5rem)] w-96 shrink-0 p-6 pl-3">
+          <AIAgentPanel />
+        </aside>
+      </div>
     </div>
   )
 }
